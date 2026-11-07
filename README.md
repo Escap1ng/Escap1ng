@@ -1,9 +1,16 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
-  <img src="assets/banner-light.svg" alt="Escap1ng — Altiora petamus — Independent developer in Hangzhou" width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-animated-dark.svg">
+  <img src="assets/banner-animated-light.svg" alt="Escap1ng — Altiora petamus — Independent developer in Hangzhou" width="100%">
 </picture>
 
 **42** stars · **4** forks · **6** followers · **8** projects
+
+<a href="https://github.com/Escap1ng">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/activity-dark.svg">
+    <img src="assets/activity-light.svg" alt="GitHub contribution calendar — 545 contributions in the last six months (snapshot 2026-11-07)" width="100%">
+  </picture>
+</a>
 
 Independent developer in Hangzhou. I build tooling for mathematical modeling contests and local-first desktop apps, and write about AI-assisted writing and code verification.
 
