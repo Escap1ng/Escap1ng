@@ -33,7 +33,7 @@
       <stop offset="0.62" stop-color="#000000" stop-opacity="0"/>
       <stop offset="1" stop-color="#000000" stop-opacity="0.5"/>
     </radialGradient>
-    <clipPath id="card"><rect x="0.5" y="0.5" width="1279" height="319" rx="10"/></clipPath>
+    <clipPath id="card"><rect x="0.5" y="0.5" width="1279" height="319" rx="17"/></clipPath>
   </defs>
 
   <g clip-path="url(#card)">
@@ -84,5 +84,5 @@
   <rect width="1280" height="320" fill="url(#vig)"/>
   </g>
 
-  <rect x="0.5" y="0.5" width="1279" height="319" rx="10" fill="none" stroke="#24303f"/>
+  <rect x="0.5" y="0.5" width="1279" height="319" rx="17" fill="none" stroke="#24303f"/>
 </svg>

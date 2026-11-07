@@ -1,6 +1,6 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-animated-dark.svg?v=200">
-  <img src="assets/banner-animated-light.svg?v=200" alt="Escap1ng — Altiora petamus — Independent developer in Hangzhou" width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-animated-dark.svg?v=201">
+  <img src="assets/banner-animated-light.svg?v=201" alt="Escap1ng — Altiora petamus — Independent developer in Hangzhou" width="100%">
 </picture>
 
 <a href="https://github.com/Escap1ng">
