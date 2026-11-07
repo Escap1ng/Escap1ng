@@ -1,12 +1,12 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-animated-dark.svg">
-  <img src="assets/banner-animated-light.svg" alt="Escap1ng — Altiora petamus — Independent developer in Hangzhou" width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-animated-dark.svg?v=200">
+  <img src="assets/banner-animated-light.svg?v=200" alt="Escap1ng — Altiora petamus — Independent developer in Hangzhou" width="100%">
 </picture>
 
 <a href="https://github.com/Escap1ng">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/activity-dark.svg?v=200">
-    <img src="assets/activity-light.svg?v=200" alt="GitHub activity — 42 stars, 4 forks, 6 followers, 8 projects; 545 contributions in the last six months (snapshot 2026-11-07)" width="100%">
+    <img src="assets/activity-light.svg?v=200" alt="GitHub activity overview (auto-refreshed; live counts inside the image)" width="100%">
   </picture>
 </a>
 
@@ -26,7 +26,7 @@ Independent developer in Hangzhou. I build tooling for mathematical modeling con
 
 **[kaggle-store-sales-timesfm](https://github.com/Escap1ng/kaggle-store-sales-timesfm)** — Kaggle Store Sales forecasting: TimesFM-3 zero-shot + recursive LightGBM, log-space blend. `★ 3`
 
-**[altiora-agent](https://github.com/Escap1ng/altiora-agent)** — Headless-first coding agent harness. `★ 1`
+**[altiora-agent](https://github.com/Escap1ng/altiora-agent)** — Headless-first coding agent harness. `★ 2`
 
 ## Writing
 
