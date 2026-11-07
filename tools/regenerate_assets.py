@@ -13,13 +13,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
-QUERY = """query {
-  viewer {
-    followers { totalCount }
-    repositories(ownerAffiliations: OWNER, isFork: false, first: 50) {
-      totalCount
-      nodes { name stargazerCount forkCount isPrivate }
-    }
+QUERY = """query($login: String!) {
+  user(login: $login) {
     contributionsCollection {
       contributionCalendar {
         weeks { contributionDays { contributionCount date } }
@@ -28,21 +23,41 @@ QUERY = """query {
   }
 }"""
 
+GH_USER = 'Escap1ng'
+
+
+def gh_request(url, token, data=None):
+    req = urllib.request.Request(url, headers={
+        'Authorization': f'Bearer {token}',
+        'User-Agent': 'profile-assets-refresh',
+        'Accept': 'application/vnd.github+json',
+    }, data=data.encode() if isinstance(data, str) else data)
+    with urllib.request.urlopen(req, timeout=60) as r:
+        return json.loads(r.read())
+
 
 def fetch_viewer():
-    req = urllib.request.Request(
+    token = os.environ['GITHUB_TOKEN']
+    cal = gh_request(
         'https://api.github.com/graphql',
-        data=json.dumps({'query': QUERY}).encode(),
-        headers={
-            'Authorization': f'Bearer {os.environ["GITHUB_TOKEN"]}',
-            'User-Agent': 'profile-assets-refresh',
-        },
+        token,
+        data=json.dumps({'query': QUERY, 'variables': {'login': GH_USER}}),
     )
-    with urllib.request.urlopen(req, timeout=60) as r:
-        body = json.loads(r.read())
-    if body.get('errors'):
-        raise RuntimeError(body['errors'])
-    return body['data']['viewer']
+    if cal.get('errors'):
+        raise RuntimeError(cal['errors'])
+    user = gh_request(f'https://api.github.com/users/{GH_USER}', token)
+    repos = gh_request(f'https://api.github.com/users/{GH_USER}/repos?per_page=100', token)
+    return {
+        'followers': {'totalCount': user['followers']},
+        'repositories': {'nodes': [
+            {'name': r['name'], 'stargazerCount': r['stargazers_count'],
+             'forkCount': r['forks_count'], 'isPrivate': r['private']}
+            for r in repos
+        ]},
+        'contributionsCollection': {
+            'contributionCalendar': cal['data']['user']['contributionsCollection']['contributionCalendar'],
+        },
+    }
 
 
 W, H = 760, 216
