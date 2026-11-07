@@ -39,32 +39,32 @@
   <rect width="1280" height="320" fill="url(#glow)"/>
 
   <g fill="none" stroke="#5d7085" stroke-opacity="0.20" stroke-width="1">
-    <polyline points="1105,118 1097,186 1032,200 1048,138 1105,118"/>
-    <polyline points="1048,138 1153,112 1190,146 1240,210"/>
+    <polyline points="1000,112 1073,147 1051,172 998,154 1000,112"/>
+    <polyline points="1073,147 1112,155 1143,163 1166,205"/>
   </g>
 
   <g fill="#26303d" stroke="none">
-    <circle cx="1105" cy="118" r="9.9" fill="url(#halo)" stroke="none"/>
-    <circle cx="1105" cy="118" r="2.9"/>
-    <circle cx="1097" cy="186" r="8.5" fill="url(#halo)" stroke="none"/>
-    <circle cx="1097" cy="186" r="2.5"/>
-    <circle cx="1032" cy="200" r="8.2" fill="url(#halo)" stroke="none"/>
-    <circle cx="1032" cy="200" r="2.4"/>
-    <circle cx="1048" cy="138" r="6.5" fill="url(#halo)" stroke="none"/>
-    <circle cx="1048" cy="138" r="1.9"/>
-    <circle cx="1153" cy="112" r="10.5" fill="url(#halo)" stroke="none"/>
-    <circle cx="1153" cy="112" r="3.1"/>
-    <circle cx="1190" cy="146" r="8.8" fill="url(#halo)" stroke="none"/>
-    <circle cx="1190" cy="146" r="2.6"/>
-    <circle cx="1196" cy="139" r="2.6" fill="url(#halo)" stroke="none"/>
-    <circle cx="1196" cy="139" r="1.2"/>
-    <circle cx="1240" cy="210" r="9.9" fill="url(#halo)" stroke="none"/>
-    <circle cx="1240" cy="210" r="2.9"/>
-    <circle cx="1266" cy="80" r="1.0" opacity="0.35"/>
-    <circle cx="1130" cy="240" r="0.9" opacity="0.3"/>
-    <circle cx="1216" cy="60" r="1.0" opacity="0.3"/>
-    <circle cx="1174" cy="262" r="0.9" opacity="0.25"/>
-    <circle cx="1006" cy="74" r="0.8" opacity="0.22"/>
+    <circle cx="1000" cy="112" r="9.9" fill="url(#halo)" stroke="none"/>
+    <circle cx="1000" cy="112" r="2.9"/>
+    <circle cx="998" cy="154" r="8.5" fill="url(#halo)" stroke="none"/>
+    <circle cx="998" cy="154" r="2.5"/>
+    <circle cx="1051" cy="172" r="8.2" fill="url(#halo)" stroke="none"/>
+    <circle cx="1051" cy="172" r="2.4"/>
+    <circle cx="1073" cy="147" r="6.5" fill="url(#halo)" stroke="none"/>
+    <circle cx="1073" cy="147" r="1.9"/>
+    <circle cx="1112" cy="155" r="10.5" fill="url(#halo)" stroke="none"/>
+    <circle cx="1112" cy="155" r="3.1"/>
+    <circle cx="1143" cy="163" r="8.8" fill="url(#halo)" stroke="none"/>
+    <circle cx="1143" cy="163" r="2.6"/>
+    <circle cx="1154" cy="151" r="2.4" fill="url(#halo)" stroke="none"/>
+    <circle cx="1154" cy="151" r="1.1"/>
+    <circle cx="1166" cy="205" r="9.9" fill="url(#halo)" stroke="none"/>
+    <circle cx="1166" cy="205" r="2.9"/>
+    <circle cx="1230" cy="90" r="1.0" opacity="0.35"/>
+    <circle cx="1200" cy="250" r="0.9" opacity="0.3"/>
+    <circle cx="1252" cy="180" r="1.0" opacity="0.3"/>
+    <circle cx="1105" cy="240" r="0.8" opacity="0.25"/>
+    <circle cx="985" cy="70" r="0.8" opacity="0.22"/>
   </g>
 
   <text x="90" y="84" font-family="CormorantGaramond, Georgia, serif" font-weight="600" font-size="12" letter-spacing="6" fill="#76828f">ESCAPING NOTES</text>
