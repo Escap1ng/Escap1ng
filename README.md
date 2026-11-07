@@ -3,6 +3,8 @@
   <img src="assets/banner-light.svg" alt="Escap1ng — Altiora petamus — Independent developer in Hangzhou" width="100%">
 </picture>
 
+**42** stars · **4** forks · **6** followers · **8** projects
+
 Independent developer in Hangzhou. I build tooling for mathematical modeling contests and local-first desktop apps, and write about AI-assisted writing and code verification.
 
 **Toolbox** — Python · TypeScript · Electron · Vue
