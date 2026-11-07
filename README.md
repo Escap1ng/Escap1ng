@@ -5,8 +5,8 @@
 
 <a href="https://github.com/Escap1ng">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/activity-dark.svg">
-    <img src="assets/activity-light.svg" alt="GitHub activity — 42 stars, 4 forks, 6 followers, 8 projects; 545 contributions in the last six months (snapshot 2026-11-07)" width="100%">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/activity-dark.svg?v=200">
+    <img src="assets/activity-light.svg?v=200" alt="GitHub activity — 42 stars, 4 forks, 6 followers, 8 projects; 545 contributions in the last six months (snapshot 2026-11-07)" width="100%">
   </picture>
 </a>
 
