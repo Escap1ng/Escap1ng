@@ -30,8 +30,6 @@ Independent developer in Hangzhou. I build tooling for mathematical modeling con
 
 **[altiora-agent](https://github.com/Escap1ng/altiora-agent)** — Log-first coding agent harness with a CLI and Windows desktop app: streaming turns, tool calls, permission enforcement and resumable sessions over OpenAI-compatible models. `★ 2`
 
-**[readback](https://github.com/Escap1ng/readback)** — Evidence ledger for AI-written code: a fault light that flags the segments you cannot explain and never verified. `★ 0`
-
 ## Writing
 
 [Escaping Notes](https://escaping.top) — essays and notes, a long exposure of star trails.
