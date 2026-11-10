@@ -16,7 +16,7 @@ Independent developer in Hangzhou. I build tooling for mathematical modeling con
 
 ## Selected Work
 
-**[math-modeling-skill](https://github.com/Escap1ng/math-modeling-skill)** — End-to-end AI skill for mathematical modeling contests: problem analysis, algorithm selection, implementation, paper polishing. PDF + Word delivery. `★ 18`
+**[math-modeling-skill](https://github.com/Escap1ng/math-modeling-skill)** — End-to-end AI skill for mathematical modeling contests: problem analysis, algorithm selection, implementation, paper polishing. PDF + Word delivery. `★ 19`
 
 **[mathmodel-studio](https://github.com/Escap1ng/mathmodel-studio)** — Local-first desktop agent for modeling contests: human-in-the-loop model selection, explanations, quality gates and scoring, plus figures, LaTeX/Word papers and de-AI checks. Electron + Python, bring your own model. `★ 7`
 
