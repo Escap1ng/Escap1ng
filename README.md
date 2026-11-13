@@ -1,12 +1,12 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-animated-dark.svg?v=201">
-  <img src="assets/banner-animated-light.svg?v=201" alt="Escap1ng — Altiora petamus — Independent developer in Hangzhou" width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-animated-dark.svg?v=202">
+  <img src="assets/banner-animated-light.svg?v=202" alt="Escap1ng — Altiora petamus — Independent developer in Hangzhou" width="100%">
 </picture>
 
 <a href="https://github.com/Escap1ng">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/activity-dark.svg?v=200">
-    <img src="assets/activity-light.svg?v=200" alt="GitHub activity overview (auto-refreshed; live counts inside the image)" width="100%">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/activity-dark.svg?v=203">
+    <img src="assets/activity-light.svg?v=203" alt="GitHub activity overview (auto-refreshed; live counts inside the image)" width="100%">
   </picture>
 </a>
 
@@ -29,6 +29,8 @@ Independent developer in Hangzhou. I build tooling for mathematical modeling con
 **[deai-writing](https://github.com/Escap1ng/deai-writing)** — General-purpose de-AI writing skill: vocabulary-, structural-, and character-level gates with bilingual rules and regression checks. `★ 2`
 
 **[altiora-agent](https://github.com/Escap1ng/altiora-agent)** — Log-first coding agent harness with a CLI and Windows desktop app: streaming turns, tool calls, permission enforcement and resumable sessions over OpenAI-compatible models. `★ 2`
+
+**[yijing-atlas](https://github.com/Escap1ng/yijing-atlas)** — Zhouyi divination and hexagram atlas: the 49-stalk yarrow ritual step by step, hexagram texts with vernacular, Wang Bi commentary and modern readings, and a 365¼-day star chart of lunar mansions, solar terms and hexagram qi. Pure static, offline. `★ 1`
 
 ## Writing
 
