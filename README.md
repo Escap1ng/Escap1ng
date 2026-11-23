@@ -28,16 +28,16 @@ Local-first desktop agent for modeling contests: human-in-the-loop model selecti
 
 Visual LaTeX editor with multi-file projects and click-to-edit formulas; editing is fully offline, with PDF preview and export via a local Tectonic/XeLaTeX + Ghostscript service.
 
-**[yijing-atlas](https://github.com/Escap1ng/yijing-atlas)** `★ 1`
+**[altiora-agent](https://github.com/Escap1ng/altiora-agent)** `★ 2`
 
-Zhouyi divination and hexagram atlas: the 49-stalk yarrow ritual step by step, hexagram texts with vernacular, Wang Bi commentary and modern readings, and a 365¼-day star chart of lunar mansions, solar terms and hexagram qi. Pure static, offline.
+Log-first coding agent harness with a CLI and Windows desktop app: streaming turns, tool calls, permission enforcement and resumable sessions over OpenAI-compatible models.
 
 **Also building**
 
 - **[Escaping-Notes](https://github.com/Escap1ng/Escaping-Notes)** — Personal blog and journal: articles, collections, updates, gallery, projects. `★ 5`
 - **[kaggle-store-sales-timesfm](https://github.com/Escap1ng/kaggle-store-sales-timesfm)** — Kaggle Store Sales forecasting: TimesFM-3 zero-shot + recursive LightGBM, log-space blend (public LB 0.38980). `★ 3`
 - **[deai-writing](https://github.com/Escap1ng/deai-writing)** — General-purpose de-AI writing skill: vocabulary-, structural-, and character-level gates with bilingual rules and regression checks. `★ 2`
-- **[altiora-agent](https://github.com/Escap1ng/altiora-agent)** — Log-first coding agent harness with a CLI and Windows desktop app: streaming turns, tool calls, permission enforcement and resumable sessions over OpenAI-compatible models. `★ 2`
+- **[yijing-atlas](https://github.com/Escap1ng/yijing-atlas)** — Zhouyi divination and hexagram atlas: the 49-stalk yarrow ritual step by step, hexagram texts with vernacular, Wang Bi commentary and modern readings, and a 365¼-day star chart of lunar mansions, solar terms and hexagram qi. Pure static, offline. `★ 1`
 
 ## Writing
 
