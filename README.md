@@ -1,36 +1,43 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-animated-dark.svg?v=202">
-  <img src="assets/banner-animated-light.svg?v=202" alt="Escap1ng — Altiora petamus — Independent developer in Hangzhou" width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-animated-dark.svg?v=300">
+  <img src="assets/banner-animated-light.svg?v=300" alt="Escap1ng — Altiora petamus — Independent developer in Hangzhou" width="100%">
 </picture>
 
 <a href="https://github.com/Escap1ng">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/activity-dark.svg?v=203">
-    <img src="assets/activity-light.svg?v=203" alt="GitHub activity overview (auto-refreshed; live counts inside the image)" width="100%">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/activity-dark.svg?v=300">
+    <img src="assets/activity-light.svg?v=300" alt="GitHub activity overview (auto-refreshed; live counts inside the image)" width="100%">
   </picture>
 </a>
 
 Independent developer in Hangzhou. I build tooling for mathematical modeling contests and local-first desktop apps, and write about AI-assisted writing and code verification.
 
-**Toolbox** — Python · TypeScript · Electron · Vue
+**Toolbox** — `Python` `TypeScript` `Electron` `Vue` `LaTeX`
 
 ## Selected Work
 
-**[math-modeling-skill](https://github.com/Escap1ng/math-modeling-skill)** — End-to-end AI skill for mathematical modeling contests: problem analysis, algorithm selection, implementation, paper polishing. PDF + Word delivery. `★ 20`
+**[math-modeling-skill](https://github.com/Escap1ng/math-modeling-skill)** `★ 20`
 
-**[mathmodel-studio](https://github.com/Escap1ng/mathmodel-studio)** — Local-first desktop agent for modeling contests: human-in-the-loop model selection, explanations, quality gates and scoring, plus figures, LaTeX/Word papers and de-AI checks. Electron + Python, bring your own model. `★ 7`
+End-to-end AI skill for mathematical modeling contests: problem analysis, algorithm selection, implementation, paper polishing. PDF + Word delivery.
 
-**[Escaping-Notes](https://github.com/Escap1ng/Escaping-Notes)** — Personal blog and journal: articles, collections, updates, gallery, projects. `★ 5`
+**[mathmodel-studio](https://github.com/Escap1ng/mathmodel-studio)** `★ 7`
 
-**[VisualLaTeX](https://github.com/Escap1ng/VisualLaTeX)** — Visual LaTeX editor with multi-file projects and click-to-edit formulas; editing is fully offline, with PDF preview and export via a local Tectonic/XeLaTeX + Ghostscript service. `★ 5`
+Local-first desktop agent for modeling contests: human-in-the-loop model selection, explanations, quality gates and scoring, plus figures, LaTeX/Word papers and de-AI checks. Electron + Python, bring your own model.
 
-**[kaggle-store-sales-timesfm](https://github.com/Escap1ng/kaggle-store-sales-timesfm)** — Kaggle Store Sales forecasting: TimesFM-3 zero-shot + recursive LightGBM, log-space blend (public LB 0.38980). `★ 3`
+**[VisualLaTeX](https://github.com/Escap1ng/VisualLaTeX)** `★ 5`
 
-**[deai-writing](https://github.com/Escap1ng/deai-writing)** — General-purpose de-AI writing skill: vocabulary-, structural-, and character-level gates with bilingual rules and regression checks. `★ 2`
+Visual LaTeX editor with multi-file projects and click-to-edit formulas; editing is fully offline, with PDF preview and export via a local Tectonic/XeLaTeX + Ghostscript service.
 
-**[altiora-agent](https://github.com/Escap1ng/altiora-agent)** — Log-first coding agent harness with a CLI and Windows desktop app: streaming turns, tool calls, permission enforcement and resumable sessions over OpenAI-compatible models. `★ 2`
+**[yijing-atlas](https://github.com/Escap1ng/yijing-atlas)** `★ 1`
 
-**[yijing-atlas](https://github.com/Escap1ng/yijing-atlas)** — Zhouyi divination and hexagram atlas: the 49-stalk yarrow ritual step by step, hexagram texts with vernacular, Wang Bi commentary and modern readings, and a 365¼-day star chart of lunar mansions, solar terms and hexagram qi. Pure static, offline. `★ 1`
+Zhouyi divination and hexagram atlas: the 49-stalk yarrow ritual step by step, hexagram texts with vernacular, Wang Bi commentary and modern readings, and a 365¼-day star chart of lunar mansions, solar terms and hexagram qi. Pure static, offline.
+
+**Also building**
+
+- **[Escaping-Notes](https://github.com/Escap1ng/Escaping-Notes)** — Personal blog and journal: articles, collections, updates, gallery, projects. `★ 5`
+- **[kaggle-store-sales-timesfm](https://github.com/Escap1ng/kaggle-store-sales-timesfm)** — Kaggle Store Sales forecasting: TimesFM-3 zero-shot + recursive LightGBM, log-space blend (public LB 0.38980). `★ 3`
+- **[deai-writing](https://github.com/Escap1ng/deai-writing)** — General-purpose de-AI writing skill: vocabulary-, structural-, and character-level gates with bilingual rules and regression checks. `★ 2`
+- **[altiora-agent](https://github.com/Escap1ng/altiora-agent)** — Log-first coding agent harness with a CLI and Windows desktop app: streaming turns, tool calls, permission enforcement and resumable sessions over OpenAI-compatible models. `★ 2`
 
 ## Writing
 
@@ -38,4 +45,4 @@ Independent developer in Hangzhou. I build tooling for mathematical modeling con
 
 ---
 
-*Altiora petamus.*
+<p align="center"><sub><i>Altiora petamus.</i></sub></p>

@@ -61,17 +61,17 @@ def fetch_viewer():
 
 
 W, H = 760, 216
-X0, Y0, PITCH, CELL = 42, 78, 13, 11
+X0, Y0, PITCH, CELL = 40, 82, 13, 11
 MONO = 'ui-monospace, SFMono-Regular, Menlo, Consolas, monospace'
 MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
 THEMES = {
-    'light': dict(bg0='#f2f5f9', bg1='#e9eef5', border='#d1d9e0', L0='#e2eaf2', L1='#c2d1e1',
-                  L2='#8fa9c3', L3='#54718f', L4='#14283d', label='#7e8a9b', ink='#10131a',
-                  sweep='#7fa8d9'),
-    'dark': dict(bg0='#04060b', bg1='#0a1019', border='#24303f', L0='#121924', L1='#1d2c40',
-                 L2='#31496a', L3='#52769f', L4='#a9c3e6', label='#8a96a8', ink='#e6edf3',
-                 sweep='#88bfff'),
+    'light': dict(bg0='#f7faf8', bg1='#e9f0eb', border='#d2dcd5', L0='#dfe8e2', L1='#c9dfd6',
+                  L2='#7fbfa1', L3='#16a36a', L4='#0b563b', label='#7d8b82', ink='#10131a',
+                  sweep='#16a36a'),
+    'dark': dict(bg0='#030604', bg1='#0a120e', border='#233229', L0='#121a16', L1='#143a29',
+                 L2='#1c6349', L3='#16a36a', L4='#6fd3a6', label='#8a9992', ink='#e9f1ec',
+                 sweep='#3fbf8a'),
 }
 
 
@@ -119,33 +119,45 @@ def panel_svg(viewer, snapshot):
                 f'  <rect x="{X0 + wi * PITCH}" y="{Y0 + di * PITCH}" width="{CELL}" height="{CELL}" rx="3" '
                 f'fill="{t["L" + str(level(d["c"]))]}"><title>{d["d"]}: {d["c"]} contributions</title></rect>'
             )
+        squeezed = []
+        for x, name in labels:
+            if squeezed and x - squeezed[-1][0] < 26:
+                squeezed[-1] = (x, name)
+            else:
+                squeezed.append((x, name))
         months = ''.join(
-            f'  <text x="{x}" y="{Y0 - 8}" font-family="{MONO}" font-size="10" fill="{t["label"]}">{name}</text>'
-            for x, name in labels
+            f'  <text x="{x}" y="{Y0 - 8}" font-family="{MONO}" font-size="10" letter-spacing="0.4" fill="{t["label"]}">{name}</text>'
+            for x, name in squeezed
         )
-        legend_y = Y0 + 7 * PITCH + 22
+        legend_y = 194
         legend = (
-            f'  <text x="{X0}" y="{legend_y}" font-family="{MONO}" font-size="10" fill="{t["label"]}">less</text>\n'
-            f'  <rect x="{X0 + 32}" y="{legend_y - 10}" width="{CELL}" height="{CELL}" rx="3" fill="{t["L0"]}"/>\n'
-            f'  <rect x="{X0 + 46}" y="{legend_y - 10}" width="{CELL}" height="{CELL}" rx="3" fill="{t["L1"]}"/>\n'
-            f'  <rect x="{X0 + 60}" y="{legend_y - 10}" width="{CELL}" height="{CELL}" rx="3" fill="{t["L2"]}"/>\n'
-            f'  <rect x="{X0 + 74}" y="{legend_y - 10}" width="{CELL}" height="{CELL}" rx="3" fill="{t["L3"]}"/>\n'
-            f'  <rect x="{X0 + 88}" y="{legend_y - 10}" width="{CELL}" height="{CELL}" rx="3" fill="{t["L4"]}"/>\n'
-            f'  <text x="{X0 + 103}" y="{legend_y}" font-family="{MONO}" font-size="10" fill="{t["label"]}">more</text>'
+            f'  <text x="{X0}" y="{legend_y}" font-family="{MONO}" font-size="9.5" letter-spacing="0.6" fill="{t["label"]}">less</text>\n'
+            f'  <rect x="{X0 + 30}" y="{legend_y - 9.5}" width="{CELL}" height="{CELL}" rx="3" fill="{t["L0"]}"/>\n'
+            f'  <rect x="{X0 + 44}" y="{legend_y - 9.5}" width="{CELL}" height="{CELL}" rx="3" fill="{t["L1"]}"/>\n'
+            f'  <rect x="{X0 + 58}" y="{legend_y - 9.5}" width="{CELL}" height="{CELL}" rx="3" fill="{t["L2"]}"/>\n'
+            f'  <rect x="{X0 + 72}" y="{legend_y - 9.5}" width="{CELL}" height="{CELL}" rx="3" fill="{t["L3"]}"/>\n'
+            f'  <rect x="{X0 + 86}" y="{legend_y - 9.5}" width="{CELL}" height="{CELL}" rx="3" fill="{t["L4"]}"/>\n'
+            f'  <text x="{X0 + 101}" y="{legend_y}" font-family="{MONO}" font-size="9.5" letter-spacing="0.6" fill="{t["label"]}">more</text>'
         )
-        stats = (
-            f'  <text x="460" y="{Y0 + 15}" font-family="{MONO}" font-size="10" fill="{t["label"]}">best day · {best_fmt}</text>\n'
-            f'  <text x="718" y="{Y0 + 15}" font-family="{MONO}" font-size="13" fill="{t["ink"]}" font-weight="600" text-anchor="end">{best["c"]}</text>\n'
-            f'  <text x="460" y="{Y0 + 50}" font-family="{MONO}" font-size="10" fill="{t["label"]}">longest streak</text>\n'
-            f'  <text x="718" y="{Y0 + 50}" font-family="{MONO}" font-size="13" fill="{t["ink"]}" font-weight="600" text-anchor="end">{best_streak}d</text>\n'
-            f'  <text x="460" y="{Y0 + 85}" font-family="{MONO}" font-size="10" fill="{t["label"]}">active days</text>\n'
-            f'  <text x="718" y="{Y0 + 85}" font-family="{MONO}" font-size="13" fill="{t["ink"]}" font-weight="600" text-anchor="end">{active}</text>'
+        stat_rows = [
+            (100, f'best day · {best_fmt}', best['c']),
+            (134, 'longest streak', f'{best_streak}d'),
+            (168, 'active days', active),
+        ]
+        stats = '\n'.join(
+            f'  <text x="456" y="{y}" font-family="{MONO}" font-size="9.5" letter-spacing="1.4" fill="{t["label"]}">{label.upper()}</text>\n'
+            f'  <text x="720" y="{y + 0.5}" text-anchor="end" font-family="{MONO}" font-size="15" font-weight="600" fill="{t["ink"]}">{value}</text>'
+            for y, label, value in stat_rows
         )
         return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-label="GitHub activity: {total} contributions in the last six months, snapshot {snapshot}">
   <defs>
     <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="{t['bg0']}"/>
       <stop offset="1" stop-color="{t['bg1']}"/>
+    </linearGradient>
+    <linearGradient id="hdr" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="{t['label']}" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="{t['label']}" stop-opacity="0"/>
     </linearGradient>
     <linearGradient id="sweepg">
       <stop stop-color="{t['sweep']}" stop-opacity="0"/>
@@ -156,12 +168,14 @@ def panel_svg(viewer, snapshot):
   </defs>
   <style>@media (prefers-reduced-motion: reduce){{.sweep{{display:none}}}}</style>
 
-  <rect x="0.5" y="0.5" width="{W - 1}" height="{H - 1}" rx="10" fill="url(#bg)" stroke="{t['border']}"/>
-  <text x="{X0 - 2}" y="42" font-family="{MONO}" font-size="15" fill="{t['ink']}" font-weight="600">{total_stars}<tspan font-weight="400" font-size="12" fill="{t['label']}"> stars · </tspan>{total_forks}<tspan font-weight="400" font-size="12" fill="{t['label']}"> forks · </tspan>{followers}<tspan font-weight="400" font-size="12" fill="{t['label']}"> followers · </tspan>{n_repos}<tspan font-weight="400" font-size="12" fill="{t['label']}"> projects</tspan></text>
-  <text x="{W - 42}" y="42" text-anchor="end" font-family="{MONO}" font-size="10" fill="{t['label']}">snapshot {snapshot}</text>
+  <rect x="0.5" y="0.5" width="{W - 1}" height="{H - 1}" rx="14" fill="url(#bg)" stroke="{t['border']}"/>
+  <text x="{X0}" y="46" font-family="{MONO}" font-size="16" fill="{t['ink']}" font-weight="600">{total_stars}<tspan font-weight="400" font-size="11" fill="{t['label']}"> stars · </tspan>{total_forks}<tspan font-weight="400" font-size="11" fill="{t['label']}"> forks · </tspan>{followers}<tspan font-weight="400" font-size="11" fill="{t['label']}"> followers · </tspan>{n_repos}<tspan font-weight="400" font-size="11" fill="{t['label']}"> projects</tspan></text>
+  <text x="{W - 40}" y="46" text-anchor="end" font-family="{MONO}" font-size="9.5" letter-spacing="1.6" fill="{t['label']}">SNAPSHOT {snapshot}</text>
+  <rect x="{X0}" y="59" width="{W - 80}" height="1" fill="url(#hdr)"/>
 {months}{chr(10).join(rects)}
   <g clip-path="url(#gclip)"><rect class="sweep" x="{X0}" y="{Y0 - 6}" width="90" height="{7 * PITCH + 12}" fill="url(#sweepg)"><animateTransform attributeName="transform" type="translate" from="-110 0" to="{(len(days) // 7 - 1) * PITCH + CELL + 110} 0" dur="13s" repeatCount="indefinite"/></rect></g>
 {legend}
+  <line x1="436" y1="{Y0}" x2="436" y2="{Y0 + 7 * PITCH + 2}" stroke="{t['label']}" stroke-opacity="0.25"/>
 {stats}
 </svg>
 '''
@@ -173,7 +187,7 @@ def update_readme_chips(repos):
     counts = {r['name']: r['stargazerCount'] for r in repos}
     p = ROOT / 'README.md'
     out, changed = [], False
-    link_re = re.compile(r'^\*\*\[([\w-]+)\]\(https://github\.com/Escap1ng/[\w-]+\)\*\*')
+    link_re = re.compile(r'^\s*(?:[-*]\s+)?\*\*\[([\w-]+)\]\(https://github\.com/Escap1ng/[\w-]+\)\*\*')
     for line in p.read_text(encoding='utf-8').splitlines():
         m = link_re.match(line)
         if m and m.group(1) in counts:
