@@ -20,10 +20,6 @@ Independent developer in Hangzhou. I build tooling for mathematical modeling con
 
 End-to-end AI skill for mathematical modeling contests: problem analysis, algorithm selection, implementation, paper polishing. PDF + Word delivery.
 
-**[mathmodel-studio](https://github.com/Escap1ng/mathmodel-studio)** `★ 7`
-
-Local-first desktop agent for modeling contests: human-in-the-loop model selection, explanations, quality gates and scoring, plus figures, LaTeX/Word papers and de-AI checks. Electron + Python, bring your own model.
-
 **[VisualLaTeX](https://github.com/Escap1ng/VisualLaTeX)** `★ 5`
 
 Visual LaTeX editor with multi-file projects and click-to-edit formulas; editing is fully offline, with PDF preview and export via a local Tectonic/XeLaTeX + Ghostscript service.
@@ -34,6 +30,7 @@ Log-first coding agent harness with a CLI and Windows desktop app: streaming tur
 
 **Also building**
 
+- **[mathmodel-studio](https://github.com/Escap1ng/mathmodel-studio)** — Local-first desktop agent for modeling contests: human-in-the-loop model selection, explanations, quality gates and scoring, plus figures, LaTeX/Word papers and de-AI checks. Electron + Python, bring your own model. `★ 7`
 - **[Escaping-Notes](https://github.com/Escap1ng/Escaping-Notes)** — Personal blog and journal: articles, collections, updates, gallery, projects. `★ 5`
 - **[kaggle-store-sales-timesfm](https://github.com/Escap1ng/kaggle-store-sales-timesfm)** — Kaggle Store Sales forecasting: TimesFM-3 zero-shot + recursive LightGBM, log-space blend (public LB 0.38980). `★ 3`
 - **[deai-writing](https://github.com/Escap1ng/deai-writing)** — General-purpose de-AI writing skill: vocabulary-, structural-, and character-level gates with bilingual rules and regression checks. `★ 2`
