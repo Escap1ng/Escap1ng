@@ -129,8 +129,8 @@ def build(counts):
 
     blocks = [
         "<!-- set by tools/build_readme.py — edit that, not this -->",
-        themed("assets/banner-animated-{theme}.svg?v=800", BANNER_ALT),
-        link(PROFILE, themed("assets/activity-{theme}.svg?v=800", ACTIVITY_ALT)),
+        themed("assets/banner-animated-{theme}.svg?v=900", BANNER_ALT),
+        link(PROFILE, themed("assets/activity-{theme}.svg?v=900", ACTIVITY_ALT)),
         STATEMENT,
         TOOLBOX,
         link(SECTIONS[0][2], themed("assets/sec-1-{theme}.svg", "I · Selected Work")),

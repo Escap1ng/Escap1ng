@@ -85,16 +85,16 @@ SNAP = ""
 COS30 = math.cos(math.radians(30))
 
 SET = {
-    "w": dict(fits=720, design=880, margin=24, weeks=26, bar=1.15, band=500, top=52,
+    "w": dict(fits=720, design=880, margin=24, weeks=26, bar=1.45, band=500, top=52,
               labels_y=22, radar=(66, 240, 240, 118, True, 9.5), donut=(46, 244, 196),
               legend=True, months=True, bottom=100),
-    "m": dict(fits=460, design=700, margin=20, weeks=20, bar=1.15, band=430, top=44,
+    "m": dict(fits=460, design=700, margin=20, weeks=20, bar=1.45, band=430, top=44,
               labels_y=20, radar=(52, 200, 210, 100, True, 8.5), donut=(38, 210, 170),
               legend=True, months=True, bottom=92),
-    "n": dict(fits=290, design=290, margin=17, weeks=12, bar=1.35, band=180, top=32,
+    "n": dict(fits=290, design=290, margin=17, weeks=12, bar=1.7, band=180, top=32,
               labels_y=18, radar=(46, 172, 200, 94, False, 8), donut=(34, 108, 104),
               legend=False, months=False, bottom=330),
-    "s": dict(fits=236, design=236, margin=14, weeks=9, bar=1.3, band=170, top=28,
+    "s": dict(fits=236, design=236, margin=14, weeks=9, bar=1.65, band=170, top=28,
               labels_y=16, radar=(42, 160, 180, 86, False, 7.5), donut=(30, 100, 96),
               legend=False, months=False, bottom=360),
 }

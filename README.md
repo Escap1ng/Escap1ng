@@ -1,8 +1,8 @@
 <!-- set by tools/build_readme.py — edit that, not this -->
 
-<picture><source media="(prefers-color-scheme: dark)" srcset="assets/banner-animated-dark.svg?v=800"><img src="assets/banner-animated-light.svg?v=800" alt="Escap1ng — Altiora petamus — Independent developer in Hangzhou" width="100%" align="top"></picture>
+<picture><source media="(prefers-color-scheme: dark)" srcset="assets/banner-animated-dark.svg?v=900"><img src="assets/banner-animated-light.svg?v=900" alt="Escap1ng — Altiora petamus — Independent developer in Hangzhou" width="100%" align="top"></picture>
 
-<a href="https://github.com/Escap1ng"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/activity-dark.svg?v=800"><img src="assets/activity-light.svg?v=800" alt="GitHub activity over six months: an isometric carpet, a contribution-type radar, the language ring, and the figures (auto-refreshed)" width="100%" align="top"></picture></a>
+<a href="https://github.com/Escap1ng"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/activity-dark.svg?v=900"><img src="assets/activity-light.svg?v=900" alt="GitHub activity over six months: an isometric carpet, a contribution-type radar, the language ring, and the figures (auto-refreshed)" width="100%" align="top"></picture></a>
 
 Independent developer in Hangzhou. I build tooling for mathematical modeling contests and local-first desktop apps, and write about AI-assisted writing and code verification.
 
