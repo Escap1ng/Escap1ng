@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regenerate the contribution plate and README star chips from live GitHub data.
+"""Regenerate the contribution plate from live GitHub data.
 
 The plate is three things in one card: an isometric carpet of the last half year
 (bar height and tone follow the day's count), a five-axis radar of contribution
@@ -10,18 +10,11 @@ Run locally with the gh CLI logged in, or with GITHUB_TOKEN set:
     python tools/regenerate_assets.py
 Scheduled in CI (.github/workflows/refresh.yml).
 """
-import json
 import math
-import os
-import re
-import subprocess
-import urllib.request
 from datetime import datetime, timezone
-from pathlib import Path
 
+from gh_api import USER as GH_USER, graphql, profile, repositories
 from plates import F, T, MIDDOT, ROOT, hairline, plate
-
-GH_USER = "Escap1ng"
 
 QUERY = """query($login: String!) {
   user(login: $login) {
@@ -39,44 +32,11 @@ QUERY = """query($login: String!) {
 }"""
 
 
-def gql(login):
-    token = os.environ.get("GITHUB_TOKEN")
-    if token:
-        req = urllib.request.Request(
-            "https://api.github.com/graphql",
-            data=json.dumps({"query": QUERY, "variables": {"login": login}}).encode(),
-            headers={"Authorization": f"Bearer {token}",
-                     "User-Agent": "profile-assets-refresh",
-                     "Content-Type": "application/json"})
-        with urllib.request.urlopen(req, timeout=60) as r:
-            payload = json.load(r)
-    else:
-        out = subprocess.check_output(
-            ["gh", "api", "graphql", "-f", f"query={QUERY}", "-f", f"login={login}"])
-        payload = json.loads(out)
-    if payload.get("errors"):
-        raise RuntimeError(payload["errors"])
-    return payload["data"]["user"]
-
-
-def rest(path, token):
-    if token:
-        req = urllib.request.Request(
-            f"https://api.github.com/{path}",
-            headers={"Authorization": f"Bearer {token}",
-                     "User-Agent": "profile-assets-refresh",
-                     "Accept": "application/vnd.github+json"})
-        with urllib.request.urlopen(req, timeout=60) as r:
-            return json.load(r)
-    return json.loads(subprocess.check_output(["gh", "api", path]))
-
-
 def fetch():
-    token = os.environ.get("GITHUB_TOKEN")
-    user = gql(GH_USER)
+    user = graphql(QUERY, {"login": GH_USER})["user"]
     cc = user["contributionsCollection"]
-    repos = rest(f"users/{GH_USER}/repos?per_page=100", token)
-    profile = rest(f"users/{GH_USER}", token)
+    repos = repositories()
+    who = profile()
     days = [{"c": d["contributionCount"], "d": d["date"]}
             for w in cc["contributionCalendar"]["weeks"] for d in w["contributionDays"]]
     radar = [cc["totalCommitContributions"], cc["totalIssueContributions"],
@@ -87,7 +47,7 @@ def fetch():
         "radar": [v or 0 for v in radar],
         "stars": sum(r["stargazers_count"] for r in repos if not r["fork"]),
         "forks": sum(r["forks_count"] for r in repos if not r["fork"]),
-        "followers": profile["followers"],
+        "followers": who["followers"],
         "projects": len([r for r in repos if not r["fork"]]),
         "all_repos": repos,
     }
@@ -97,34 +57,34 @@ def fetch():
 # tone, so a bar reads as a solid standing on the plate.
 THEMES = {
     "light": dict(
-        bg0="#f7faf8", bg1="#e9f0eb", border="#d2dcd5", ink="#10131a",
-        text="#55645b", mute="#7d8b82", hair="#0c0e12", hair_op=0.12,
-        ramp=["#dfe8e2", "#c4e0d0", "#8ccfae", "#3aa87c", "#0b563b"],
-        accent="#16a36a", radar_fill=0.10, dash=0.55,
-        shade=(-0.14, -0.27), grain=None,
+        bg0="#f8f5ec", bg1="#efece0", border="#191b1b", border_op=0.13, ink="#191b1b",
+        text="#4e5248", mute="#7d8075", hair="#191b1b", hair_op=0.12,
+        ramp=["#e9ece2", "#cfdccc", "#a4c0ab", "#679275", "#2c5a43"],
+        accent="#2f7a58", radar_fill=0.10, dash=0.55,
+        shade=(-0.20, -0.40), shadow=("#101a14", 0.11), zero_op=0.75, grain=None,
     ),
     "dark": dict(
-        bg0="#030604", bg1="#0a120e", border="#233229", ink="#e9f1ec",
-        text="#b3c1b8", mute="#8a9992", hair="#edf3ee", hair_op=0.14,
-        ramp=["#121a16", "#17392a", "#1c6349", "#16a36a", "#6fd3a6"],
-        accent="#3fbf8a", radar_fill=0.12, dash=0.5,
-        shade=(-0.10, -0.22), grain=None,
+        bg0="#121413", bg1="#080a09", border="#f2f0e8", border_op=0.12, ink="#f2f0e8",
+        text="#c3c5ba", mute="#8d9086", hair="#f2f0e8", hair_op=0.14,
+        ramp=["#101613", "#15251b", "#1f3a2a", "#2f5d46", "#7fae95"],
+        accent="#4fbf8f", radar_fill=0.12, dash=0.5,
+        shade=(-0.14, -0.30), shadow=("#000000", 0.38), zero_op=0.95, grain=None,
     ),
 }
 
 COS30 = math.cos(math.radians(30))
 
 SET = {
-    "w": dict(fits=720, margin=26, weeks=26, s=15.0, bar=0.72, radar_r=62,
+    "w": dict(fits=720, margin=26, weeks=26, s=16.0, bar=1.35, radar_r=62,
               radar_cy=196, stats_top=286, header_y=44, hair_y=58, carpet_y=92,
               legend_gap=26, snap=True),
-    "m": dict(fits=460, margin=20, weeks=18, s=11.5, bar=0.72, radar_r=50,
+    "m": dict(fits=460, margin=20, weeks=18, s=12.0, bar=1.30, radar_r=50,
               radar_cy=180, stats_top=258, header_y=40, hair_y=54, carpet_y=80,
               legend_gap=22, snap=True),
-    "n": dict(fits=290, margin=17, weeks=13, s=12.5, bar=0.7, radar_r=44,
-              radar_cy=None, stats_top=None, header_y=38, hair_y=64, carpet_y=84,
+    "n": dict(fits=290, margin=17, weeks=13, s=12.5, bar=1.25, radar_r=44,
+              radar_cy=None, stats_top=None, header_y=38, hair_y=64, carpet_y=88,
               legend_gap=20, snap=False),
-    "s": dict(fits=236, margin=14, weeks=10, s=11.5, bar=0.7, radar_r=40,
+    "s": dict(fits=236, margin=14, weeks=10, s=11.5, bar=1.20, radar_r=40,
               radar_cy=None, stats_top=None, header_y=36, hair_y=62, carpet_y=80,
               legend_gap=18, snap=False),
 }
@@ -233,26 +193,34 @@ def carpet_block(days, st, t, x0, y0):
         cy = y0 + (wi - di + 6) * uy
         c = day["c"]
         col = t["ramp"][level(c)]
-        h = 0.0 if c == 0 else st["bar"] * s * max(0.14, (c / top) ** 0.5)
-        k = 0.94  # inset, so the tiles keep a hairline gap like the stock drawing
+        h = 0.0 if c == 0 else st["bar"] * s * max(0.12, (c / top) ** 0.55)
+        k = 0.92  # inset, so the tiles keep a hairline gap like the stock drawing
         p = [f"{cx:.1f} {cy - uy * k - h:.1f}", f"{cx + ux * k:.1f} {cy - h:.1f}",
              f"{cx:.1f} {cy + uy * k - h:.1f}", f"{cx - ux * k:.1f} {cy - h:.1f}"]
         if h > 0:
             dk1, dk2 = t["shade"]
-            out.append(f'<polygon points="{" ".join(p)}" fill="{col}"/>')
+            # cast shadow on the plate: the bar seems to stand, not lie flat
+            sx, sy = ux * 0.42, uy * 0.85
+            out.append(f'<polygon points="{cx + sx:.1f} {cy - uy * k + sy:.1f} '
+                       f'{cx + ux * k + sx:.1f} {cy + sy:.1f} {cx + sx:.1f} {cy + uy * k + sy:.1f} '
+                       f'{cx - ux * k + sx:.1f} {cy + sy:.1f}" '
+                       f'fill="{t["shadow"][0]}" fill-opacity="{t["shadow"][1]:g}"/>')
             out.append(f'<polygon points="{cx - ux * k:.1f} {cy - h:.1f} {cx:.1f} {cy + uy * k - h:.1f} '
                        f'{cx:.1f} {cy + uy * k:.1f} {cx - ux * k:.1f} {cy:.1f}" fill="{shade(col, dk1)}"/>')
             out.append(f'<polygon points="{cx:.1f} {cy + uy * k - h:.1f} {cx + ux * k:.1f} {cy - h:.1f} '
                        f'{cx + ux * k:.1f} {cy:.1f} {cx:.1f} {cy + uy * k:.1f}" fill="{shade(col, dk2)}"/>')
+            out.append(f'<polygon points="{" ".join(p)}" fill="{col}" stroke="{shade(col, 0.16)}" '
+                       f'stroke-opacity="0.45" stroke-width="0.5"/>')
         else:
-            out.append(f'<polygon points="{" ".join(p)}" fill="{col}"/>')
+            out.append(f'<polygon points="{" ".join(p)}" fill="{col}" '
+                       f'fill-opacity="{t["zero_op"]:g}"/>')
     if weeks >= 26:
         for wi in range(weeks):
             day = days[wi * 7]
             month = int(day["d"][5:7])
             if month != last_month:
                 lx = x0 + wi * ux
-                ly = y0 + (wi + 6) * uy + 20
+                ly = y0 + (wi + 6) * uy + 26
                 labels.append((lx, MONTHS[month - 1], ly))
                 last_month = month
     squeezed = []
@@ -406,8 +374,8 @@ def chrome(t):
         f'<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">'
         f'<stop offset="0" stop-color="{t["bg0"]}"/><stop offset="1" stop-color="{t["bg1"]}"/>'
         f'</linearGradient></defs>'
-        f'<rect x="0.5" y="0.5" width="100%" height="100%" rx="14" fill="url(#bg)" '
-        f'stroke="{t["border"]}"/>'
+        f'<rect x="0.5" y="0.5" width="100%" height="100%" rx="16" fill="url(#bg)" '
+        f'stroke="{t["border"]}" stroke-opacity="{t["border_op"]}"/>'
     )
 
 
@@ -426,23 +394,6 @@ def build(d):
     return out
 
 
-def update_readme_chips(repos):
-    counts = {r["name"]: r["stargazers_count"] for r in repos if not r["fork"]}
-    p = ROOT / "README.md"
-    out, changed = [], False
-    link_re = re.compile(r"^\s*(?:[-*]\s+)?\*\*\[([\w-]+)\]\(https://github\.com/Escap1ng/[\w-]+\)\*\*")
-    for line_t in p.read_text(encoding="utf-8").splitlines():
-        m = link_re.match(line_t)
-        if m and m.group(1) in counts:
-            new = re.sub(r"`★ \d+`", f"`★ {counts[m.group(1)]}`", line_t)
-            changed |= new != line_t
-            line_t = new
-        out.append(line_t)
-    if changed:
-        p.write_text("\n".join(out) + "\n", encoding="utf-8")
-    return changed
-
-
 def main():
     global SNAPSHOT
     d = fetch()
@@ -452,10 +403,9 @@ def main():
         path = ROOT / "assets" / f"activity-{theme}.svg"
         path.write_text(svg, encoding="utf-8")
         print(f"activity-{theme}.svg: {path.stat().st_size} bytes")
-    changed = update_readme_chips(d["all_repos"])
     total, best, best_fmt, streak, active = figures(d["days"])
     print(f"snapshot {SNAPSHOT}: {total} contributions, best {best['c']} ({best_fmt}), "
-          f"streak {streak}d, active {active}; readme chips updated: {changed}")
+          f"streak {streak}d, active {active}")
 
 
 if __name__ == "__main__":
