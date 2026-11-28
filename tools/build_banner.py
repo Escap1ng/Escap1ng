@@ -268,7 +268,7 @@ def chrome(t):
         f'<filter id="grain" x="0" y="0" width="100%" height="100%">'
         f'<feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/>'
         f'<feColorMatrix type="saturate" values="0"/></filter>'
-        f'<clipPath id="card"><rect width="100%" height="100%" rx="16"/></clipPath>'
+        f'<clipPath id="card"><rect width="100%" height="100%"/></clipPath>'
         f'</defs>'
         f'<g clip-path="url(#card)">'
         f'<rect width="100%" height="100%" fill="url(#bg)"/>'
@@ -284,7 +284,7 @@ def over(t):
         f'style="animation-delay:.2s"/></g>'
         f'<rect width="100%" height="100%" filter="url(#grain)" opacity="0.05" '
         f'style="mix-blend-mode:{"multiply" if t["bg0"].startswith("#f") else "overlay"}"/>'
-        f'<rect x="0.5" y="0.5" width="100%" height="100%" rx="16" fill="none" '
+        f'<rect x="0.5" y="0.5" width="100%" height="100%" fill="none" '
         f'stroke="{t["border"]}" stroke-opacity="{t["border_op"]}"/>'
     )
 
