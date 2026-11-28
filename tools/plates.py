@@ -149,6 +149,7 @@ class Face:
 
 
 F = {
+    "thin":   Face("thin",   "RdThin",   "cormorant-300.woff2"),
     "serif":  Face("serif",  "RdSerif",  "cormorant-600.woff2"),
     "book":   Face("book",   "RdBook",   "cormorant-500.woff2"),
     "italic": Face("italic", "RdItalic", "cormorant-400-italic.woff2"),

@@ -23,6 +23,7 @@ OUT = ROOT / "assets" / "fonts"
 BASE = "https://raw.githubusercontent.com/google/fonts/main/ofl/cormorantgaramond/"
 
 FACES = [
+    ("CormorantGaramond%5Bwght%5D.ttf", 300, "cormorant-300.woff2"),
     ("CormorantGaramond%5Bwght%5D.ttf", 500, "cormorant-500.woff2"),
     ("CormorantGaramond%5Bwght%5D.ttf", 600, "cormorant-600.woff2"),
     ("CormorantGaramond-Italic%5Bwght%5D.ttf", 400, "cormorant-400-italic.woff2"),
