@@ -24,6 +24,9 @@ jobs:
       - run: python tools/regenerate_assets.py
         env:
           GITHUB_TOKEN: ${{ github.token }}
+      - run: python tools/build_readme.py
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
       - name: Commit refreshed snapshot
         run: |
           git config user.name "github-actions[bot]"
