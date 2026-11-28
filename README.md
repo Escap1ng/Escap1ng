@@ -1,12 +1,12 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-animated-dark.svg?v=300">
-  <img src="assets/banner-animated-light.svg?v=300" alt="Escap1ng — Altiora petamus — Independent developer in Hangzhou" width="100%">
+  <source media="(prefers-color-scheme: dark)" srcset="assets/banner-animated-dark.svg?v=400">
+  <img src="assets/banner-animated-light.svg?v=400" alt="Escap1ng — Altiora petamus — Independent developer in Hangzhou" width="100%">
 </picture>
 
 <a href="https://github.com/Escap1ng">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="assets/activity-dark.svg?v=300">
-    <img src="assets/activity-light.svg?v=300" alt="GitHub activity overview (auto-refreshed; live counts inside the image)" width="100%">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/activity-dark.svg?v=400">
+    <img src="assets/activity-light.svg?v=400" alt="GitHub activity overview (auto-refreshed; live counts inside the image)" width="100%">
   </picture>
 </a>
 
