@@ -11,12 +11,12 @@ Run locally with the gh CLI logged in, or with GITHUB_TOKEN set:
 Scheduled in CI (.github/workflows/refresh.yml).
 """
 import math
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 
 from gh_api import USER as GH_USER, graphql
 from plates import F, T, ROOT, plate
 
-QUERY = """query($login: String!) {
+QUERY = """query($login: String!, $from: DateTime!, $to: DateTime!) {
   user(login: $login) {
     followers { totalCount }
     repositories(first: 100, ownerAffiliations: OWNER, isFork: false) {
@@ -27,7 +27,7 @@ QUERY = """query($login: String!) {
         }
       }
     }
-    contributionsCollection {
+    contributionsCollection(from: $from, to: $to) {
       totalCommitContributions
       totalIssueContributions
       totalPullRequestContributions
@@ -40,7 +40,10 @@ QUERY = """query($login: String!) {
 
 
 def fetch():
-    u = graphql(QUERY, {"login": GH_USER})["user"]
+    now = datetime.now(timezone.utc)
+    u = graphql(QUERY, {"login": GH_USER,
+                        "from": (now - timedelta(days=26 * 7)).isoformat(),
+                        "to": now.isoformat()})["user"]
     cc = u["contributionsCollection"]
     days = [{"c": d["contributionCount"], "d": d["date"]}
             for w in cc["contributionCalendar"]["weeks"] for d in w["contributionDays"]]
@@ -82,16 +85,16 @@ SNAP = ""
 COS30 = math.cos(math.radians(30))
 
 SET = {
-    "w": dict(fits=720, design=880, margin=24, weeks=53, bar=1.55, band=500, top=52,
+    "w": dict(fits=720, design=880, margin=24, weeks=26, bar=1.15, band=500, top=52,
               labels_y=22, radar=(66, 240, 240, 118, True, 9.5), donut=(46, 244, 196),
               legend=True, months=True, bottom=100),
-    "m": dict(fits=460, design=700, margin=20, weeks=40, bar=1.5, band=430, top=44,
+    "m": dict(fits=460, design=700, margin=20, weeks=20, bar=1.15, band=430, top=44,
               labels_y=20, radar=(52, 200, 210, 100, True, 8.5), donut=(38, 210, 170),
               legend=True, months=True, bottom=92),
-    "n": dict(fits=290, design=290, margin=17, weeks=20, bar=1.4, band=210, top=32,
+    "n": dict(fits=290, design=290, margin=17, weeks=12, bar=1.35, band=180, top=32,
               labels_y=18, radar=(46, 172, 200, 94, False, 8), donut=(34, 108, 104),
               legend=False, months=False, bottom=330),
-    "s": dict(fits=236, design=236, margin=14, weeks=14, bar=1.35, band=176, top=28,
+    "s": dict(fits=236, design=236, margin=14, weeks=9, bar=1.3, band=170, top=28,
               labels_y=16, radar=(42, 160, 180, 86, False, 7.5), donut=(30, 100, 96),
               legend=False, months=False, bottom=360),
 }
@@ -284,7 +287,7 @@ def donut(langs, st, t, x, y, pin="left"):
             f'overflow="visible">{"".join(out)}</svg>')
 
 
-def counts_svg(d, total, y, bw, num_size, t, label="CONTRIBUTIONS IN TWELVE MONTHS"):
+def counts_svg(d, total, y, bw, num_size, t, label="CONTRIBUTIONS IN SIX MONTHS"):
     """Number, label and the two marks, in a box pinned to the centre."""
     cx = bw / 2
     body = [T(cx, 32, fmt(total), "serif", num_size, t["ink"], "middle", lnum=True),
@@ -381,7 +384,7 @@ def setting(d, st, t, key):
             out.append(radar(d["radar"], st, t, "0", st["top"] + st["band"] + 16, right=False))
             out.append(donut(d["languages"], st, t, 0, st["top"] + st["band"] + 30, pin="right"))
             y = st["top"] + st["band"] + 236
-        out.append(counts_svg(d, total, y - 26, 236, 22, t, "IN TWELVE MONTHS"))
+        out.append(counts_svg(d, total, y - 26, 236, 22, t, "IN SIX MONTHS"))
         out.append(T("50%", y + 64, f"BEST DAY {fmt(best['c'])} · STREAK {streak}D · ACTIVE {active}",
                      "book", 7, t["mute"], track=0.16))
         height = y + 96
@@ -393,7 +396,7 @@ def build(d):
     for theme, t in THEMES.items():
         settings = {k: setting(d, dict(SET[k]), t, k) for k in SET}
         total = sum(x["c"] for x in d["days"])
-        title = f"GitHub activity: {total} contributions in twelve months, reckoned {SNAP}"
+        title = f"GitHub activity: {total} contributions in six months, reckoned {SNAP}"
         out[theme] = plate(title, settings, ground=None, valign="top")
     return out
 
