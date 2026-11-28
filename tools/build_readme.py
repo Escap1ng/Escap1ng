@@ -59,7 +59,8 @@ COLOPHON = ("Set in Cormorant Garamond; the plates are drawn by tools/plates.py,
 COLOPHON_MARK = f"{USER.upper()} · MMXXVI"
 
 BANNER_ALT = "Escap1ng — Altiora petamus — Independent developer in Hangzhou"
-ACTIVITY_ALT = "GitHub activity overview (auto-refreshed; live counts inside the image)"
+ACTIVITY_ALT = ("GitHub activity over twelve months: an isometric carpet, a contribution-type "
+                "radar, the language ring, and the figures (auto-refreshed)")
 
 INK = {
     "light": dict(ink="#191b1b", text="#4e5248", mute="#7d8075",
@@ -128,8 +129,8 @@ def build(counts):
 
     blocks = [
         "<!-- set by tools/build_readme.py — edit that, not this -->",
-        themed("assets/banner-animated-{theme}.svg?v=500", BANNER_ALT),
-        link(PROFILE, themed("assets/activity-{theme}.svg?v=500", ACTIVITY_ALT)),
+        themed("assets/banner-animated-{theme}.svg?v=600", BANNER_ALT),
+        link(PROFILE, themed("assets/activity-{theme}.svg?v=600", ACTIVITY_ALT)),
         STATEMENT,
         TOOLBOX,
         link(SECTIONS[0][2], themed("assets/sec-1-{theme}.svg", "I · Selected Work")),
